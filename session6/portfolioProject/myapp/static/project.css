@@ -1,0 +1,17 @@
+body {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(255, 209, 216),
+    rgb(192, 231, 255)
+  );
+  height: 730px;
+}
+
+.link {
+  color: #66cf55;
+}
+
+.toss {
+  position: relative;
+  top: 20px;
+}
