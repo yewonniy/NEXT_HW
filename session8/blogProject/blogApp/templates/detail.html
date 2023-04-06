@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article detail</title>
+    <link rel="stylesheet" href="{% static 'detail.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Detail of the article</h2>
+      <br />
+      <p class="name">title :</p>
+      <p class="content">{{ details.title }}</p>
+      <p class="name">content :</p>
+      <p class="content">{{ details.content }}</p>
+      <br />
+      <p class="name">category :</p>
+      <p class="content">{{ details.category.name }}</p>
+      <p class="name">time :</p>
+      <p class="content">{{ details.time }}</p>
+      <p class="content">
+        <br /><br /><br /><br /><br /><a class="link" href="{% url 'list' %}"
+          >Back to <b>List</b> Page</a
+        >
+      </p>
+    </div>
+  </body>
+</html>

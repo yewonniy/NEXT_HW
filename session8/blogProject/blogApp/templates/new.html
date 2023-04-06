@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Article</title>
+    <link rel="stylesheet" href="{% static 'new.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>글쓰기 페이지</h2>
+      <form action="/new" method="post">
+        {% csrf_token %}
+        <div class="container_form">
+          <div>
+            <div>article title</div>
+            <input type="text" name="title" />
+          </div>
+          <select id="category" name="category">
+            <option value="">--Please choose an option--</option>
+            <option value="hobby">취미</option>
+            <option value="daily">잡담</option>
+            <option value="programming">프로그래밍</option>
+          </select>
+          <div>
+            <div>content</div>
+            <textarea name="content" cols="40" rows="20"></textarea>
+          </div>
+          <button type="submit">작성 완료</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

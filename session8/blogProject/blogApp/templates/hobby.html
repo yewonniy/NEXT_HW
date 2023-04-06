@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>카테고리로 보기</title>
+    <link rel="stylesheet" href="{% static 'category.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Categorization</h2>
+      <p>취미</p>
+      <ol>
+        {% for h in hobby_ %}
+        <li class="order">
+          <a class="link" href="{% url 'detail' h.id %}">{{ h.title }}</a>
+        </li>
+        {% endfor %}
+      </ol>
+      <p class="content">
+        <br /><br /><br /><br /><br /><a class="link" href="{% url 'list' %}"
+          >Back to <b>List</b> Page</a
+        >
+      </p>
+    </div>
+  </body>
+</html>

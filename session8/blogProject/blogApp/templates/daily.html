@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'category.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Categorization</h2>
+      <p>잡담</p>
+      <ol>
+        {% for d in daily_ %}
+        <li>
+          <a class="link" href="{% url 'detail' d.id %}">{{ d.title }}</a>
+        </li>
+        {% endfor %}
+      </ol>
+      <p class="content">
+        <br /><br /><br /><br /><br /><a class="link" href="{% url 'list' %}"
+          >Back to <b>List</b> Page</a
+        >
+      </p>
+    </div>
+  </body>
+</html>

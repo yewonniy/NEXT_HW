@@ -1,0 +1,34 @@
+body {
+  background-color: rgb(179, 107, 107);
+  color: white;
+}
+
+h2 {
+  text-align: center;
+}
+p {
+  color: rgb(235, 255, 205);
+  text-align: center;
+}
+
+ol {
+  /* text-align: center; */
+  padding-left: 0px;
+  margin-left: 180px;
+}
+
+li {
+  /* margin: 0 auto; */
+}
+
+.link {
+  color: rgb(232, 231, 255);
+  text-align: center;
+}
+
+.container {
+  margin: 25px;
+  width: 450px;
+  height: 700px;
+  border: solid white;
+}
