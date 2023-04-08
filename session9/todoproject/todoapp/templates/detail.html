@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail</title>
+    <link rel="stylesheet" href="{% static 'detail.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h2><b>Detail</b></h2>
+      <br />
+      <p>title:</p>
+      <p>{{ details.title }}</p>
+      <br />
+      <p>content:</p>
+      <p>{{ details.content }}</p>
+      <br />
+      <p>due date:</p>
+      <p>{{ details.dueday }}</p>
+      <br />
+      <a class="link" href="{% url 'home' %}">모든 할 일 보러가기</a><br />
+      <a class="link2" href="{% url 'update' details.id %}">수정하기</a><br />
+      <a class="link3" href="{% url 'delete' details.id %}">삭제하기</a>
+    </div>
+  </body>
+</html>

@@ -9,7 +9,7 @@ class Article(models.Model):
     content = models.TextField()
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     time = models.DateTimeField(null=True)
-
+    
     def __str__(self):
         return self.title
     
