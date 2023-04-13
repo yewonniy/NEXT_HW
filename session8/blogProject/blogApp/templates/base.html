@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} {% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}" />
+    {% block css %} {% endblock css %}
+  </head>
+  <body>
+    <div class="container">{% block container %} {% endblock container %}</div>
+    <footer>
+      <p class="foot">
+        Copyright 2023 sonyewon. All rights reserved.<br />
+        For more information, ae6652@naver.com
+      </p>
+    </footer>
+  </body>
+</html>

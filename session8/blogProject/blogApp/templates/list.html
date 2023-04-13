@@ -1,15 +1,14 @@
+{% extends 'base.html' %}
+{% block css %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Article List</title>
-    <link rel="stylesheet" href="{% static 'list.css' %}">
-  </head>
-  <body>
-    <div class = container>
+<link rel="stylesheet" href="{% static 'list.css' %}">
+{% endblock %}
+
+{% block title %}
+List
+{% endblock %}
+
+{% block container %}
       <ul><h2>글 전체 목록</h2></ul>
       <ul><p class="upper">글 전체 개수 : {{ cnt_all }}</p><p>전체 글 목록 ↓</p></ul>
       <ul>
@@ -25,6 +24,6 @@
         <p><a class="link" href="{% url 'programming' %}">프로그래밍</a> - 글 갯수: {{ cnt_programming }}</p>
       </ul>
       <img class ="keyborad" src="	https://upload3.inven.co.kr/upload/2023/01/04/bbs/i014059247453.gif"/>
-    </div>
+{% endblock %}
   </body>
 </html>

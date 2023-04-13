@@ -1,15 +1,14 @@
+{% extends 'base.html' %}
+{% block css %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Article detail</title>
-    <link rel="stylesheet" href="{% static 'detail.css' %}" />
-  </head>
-  <body>
-    <div class="container">
+<link rel="stylesheet" href="{% static 'detail.css' %}" />
+{% endblock %}
+
+{% block title %}
+Detail 
+{% endblock %}
+
+{% block container %}
       <h2>Detail of the article</h2>
       <br />
       <p class="name">title :</p>
@@ -22,10 +21,38 @@
       <p class="name">time :</p>
       <p class="content">{{ details.time }}</p>
       <p class="content">
-        <br /><br /><br /><br /><br /><a class="link" href="{% url 'list' %}"
-          >Back to <b>List</b> Page</a
-        >
-      </p>
-    </div>
+      <br/><br/>
+      <form method="POST">
+        {% csrf_token %}
+      <div class = "comment_write">
+        <input type="text" name="content" placeholder="댓글을 입력해주세요"/>
+        <button type="submit">작성하기</button> 
+      </div>
+      </form>
+      <p class="content">{{ details.comment.content }}</p>
+      {% for comment in details.comments.all %}
+      <div class="comments">
+        <li>{{ comment.content }}
+          <a href="{% url 'delete-comment' details.pk comment.pk %}">삭제</a>
+          <form method="POST" action="{% url 'new_recomment' details.id comment.id %}">
+            {% csrf_token %}
+          <div class = "comment_write">
+            <input type="text" name="re_comment" placeholder="대댓글을 입력해주세요"/>
+            <button type="submit">작성하기</button> 
+          </div>
+          </form>
+        </li>
+      {% for recomment in comment.recomments.all %}
+        <li>{{ recomment.re_content }}</li>
+      {% endfor %}
+      </div>
+      {% endfor %}
+      <br /><br /><br /><br />
+      <div class="link">
+        <a style="color: rgb(232, 231, 255)" href="{% url 'list' %}">Back to <b>List</b> Page</a><br/>
+        <a style="color: rgb(232, 231, 255)" href="{% url 'edit' details.pk %}">수정하기</a><br/>
+        <a style="color: rgb(232, 231, 255)" href="{% url 'delete' details.pk %}">삭제하기</a><br/>
+      </div>
+{% endblock %}
   </body>
 </html>

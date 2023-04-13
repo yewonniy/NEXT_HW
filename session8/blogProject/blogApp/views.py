@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Article, Category
+from .models import Article, Category, Comment, Recomment
 from datetime import datetime
 
 # Create your views here.
@@ -37,10 +37,6 @@ def list(request):
     return render(request, 'list.html', {'articles':articles, 'cnt_all':cnt_all, 'cnt_hobby':cnt_hobby, 'cnt_daily': cnt_daily, 'cnt_programming':cnt_programming}) 
     # render함수의 인자 -> request, 렌더링 시킬거, 딕셔너리(위의 변수 articles에 담았던 값을 articles라는 이름으로 template에 보내준다?.?)
 
-def detail(request, article_id):
-    details = Article.objects.get(id = article_id)
-    return render(request, 'detail.html', {'details':details})
-
 def hobby(request):
     hobby_cate = Category.objects.get(name="hobby")
     hobby_ = Article.objects.filter(category = hobby_cate)
@@ -55,3 +51,58 @@ def programming(request):
     prog_cate = Category.objects.get(name="programming")
     program_ = Article.objects.filter(category = prog_cate)
     return render(request, 'programming.html', {'program_':program_})
+
+def edit(request, article_id):
+   details = Article.objects.get(id=article_id)
+
+   if request.method == 'POST':
+       title = request.POST['title']
+       content = request.POST['content']
+       Article.objects.filter(id=article_id).update(
+           title=title,
+           content=content
+       )
+       return redirect('detail', article_id)
+   
+   return render(request, 'edit.html', {'details':details})
+
+
+def delete(request, article_id):
+   details = Article.objects.get(id=article_id)
+   details.delete()
+   return redirect('list')
+
+#---------------------------------------
+
+def detail(request, article_id):
+    details = Article.objects.get(id = article_id)
+
+    if request.method == 'POST':
+        content = request.POST['content']
+        Comment.objects.create(
+            post = details,
+            content = content
+        )
+        return redirect('detail', article_id)
+    
+    return render(request, 'detail.html', {'details':details})
+
+def delete_comment(request, article_id , comment_pk):
+    comment = Comment.objects.get(id = comment_pk)
+    comment.delete()
+    return redirect('detail', article_id)
+
+
+def re_comment(request, article_id, comment_id):
+    details = Article.objects.get(id = article_id)
+    comment = Comment.objects.get(id = comment_id)
+
+    if request.method == "POST":
+        re_content = request.POST['re_comment']
+        Recomment.objects.create(
+            comment = comment,
+            re_content = re_content
+        )
+        return redirect('detail', article_id)
+    
+    return render(request, 'detail.html', {'details':details})

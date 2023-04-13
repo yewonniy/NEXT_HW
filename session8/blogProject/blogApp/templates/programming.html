@@ -1,16 +1,15 @@
+{% extends 'base.html' %}
+{% block css %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'category.css' %}" />
-  </head>
-  <body>
-    <div class="container">
-      <h2>Categorization</h2>
+<link rel="stylesheet" href="{% static 'category.css' %}" />
+{% endblock %}
+
+{% block title %}
+programming
+{% endblock %}      
+  
+{% block container %}
+  <h2>Categorization</h2>
       <p>프로그래밍</p>
       <ol>
         {% for p in program_ %}
@@ -24,6 +23,6 @@
           >Back to <b>List</b> Page</a
         >
       </p>
-    </div>
+{% endblock %}
   </body>
 </html>

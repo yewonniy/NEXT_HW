@@ -19,10 +19,15 @@ from blogApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.list, name="home"),
     path('new', views.new, name='new'), #name = new : url의 별명을 new라고 하겠다는 뜻
     path('list/', views.list, name='list'),
     path('detail/<int:article_id>/', views.detail, name='detail'), #article_id는 그냥 내가 만든 변수명! . 은 접근연산자
     path('hobby/', views.hobby, name='hobby'),
     path('daily/', views.daily, name='daily'),
     path('programming/', views.programming, name='programming'),
+    path('edit/<int:article_id>', views.edit, name='edit'),
+    path('delete/<int:article_id>', views.delete, name='delete'),
+    path('delete-comment/<int:article_id>/<int:comment_pk>', views.delete_comment, name='delete-comment'),
+    path('new_recomment/<int:article_id>/<int:comment_id>',views.re_comment, name='new_recomment'),
 ]
