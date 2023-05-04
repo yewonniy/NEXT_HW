@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %} {% block title %} Home {% endblock %} 
+{% block css%} {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'app/home.css' %}" />
+{% endblock %} {% block content %}
+<h1>All the posts</h1>
+<h5>you can click them to see details</h5>
+<div class="posts">
+  <ul>
+    {% for post in posts %}
+    <p>
+      <a href="{% url 'app:detail' post.pk %}">{{ post.title }}</a>
+    </p>
+    {% endfor %}
+  </ul>
+</div>
+<a class="link" href="{%   url 'app:new' %}">글 쓰러가기</a>
+{% endblock %}

@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from .models import Article, Category, Comment, Recomment
 from datetime import datetime
 
@@ -74,18 +77,6 @@ def delete(request, article_id):
 
 #---------------------------------------
 
-def detail(request, article_id):
-    details = Article.objects.get(id = article_id)
-
-    if request.method == 'POST':
-        content = request.POST['content']
-        Comment.objects.create(
-            post = details,
-            content = content
-        )
-        return redirect('detail', article_id)
-    
-    return render(request, 'detail.html', {'details':details})
 
 def delete_comment(request, article_id , comment_pk):
     comment = Comment.objects.get(id = comment_pk)
@@ -102,6 +93,73 @@ def re_comment(request, article_id, comment_id):
         Recomment.objects.create(
             comment = comment,
             re_content = re_content
+        )
+        return redirect('detail', article_id)
+    
+    return render(request, 'detail.html', {'details':details})
+
+#-----------------------------------------------
+
+def signup(request):
+   if request.method == 'POST':
+      username = request.POST['username']
+      password = request.POST['password']
+      exist_user = User.objects.filter(username=username)
+      if exist_user:
+           error = "이미 존재하는 유저입니다."
+           return render(request, 'registration/signup.html', {"error":error})
+      
+      new_user = User.objects.create_user(username=username, password=password)
+      auth.login(request, new_user)
+   
+      return redirect('home')
+       
+   return render(request, 'registration/signup.html')
+
+def login(request):
+   if request.method == 'POST':
+      username = request.POST['username']
+      password = request.POST['password']
+      user = auth.authenticate(username=username, password=password)
+      if user is not None:
+           auth.login(request, user, backend ="django.contrib.auth.backends.ModelBackend")
+           return redirect(request.GET.get('next', '/'))
+      error = "아이디 또는 비밀번호가 틀립니다"
+      return render(request, 'registration/login.html', {"error":error})
+        
+   return render(request, 'registration/login.html')
+
+def logout(request):
+   auth.logout(request)
+   return redirect('home')
+
+@login_required(login_url="/registration/login/")
+def new(request):
+    if request.method == 'POST':
+        print(request.POST)
+        cate_gory = request.POST['category'] #cate_gory는 카테고리명 str
+        cate = Category.objects.get(name=cate_gory) #cate는 객체
+
+        new_article = Article.objects.create(
+            title = request.POST['title'],
+            content = request.POST['content'],
+            time = datetime.now(),
+            category = cate, #객체를 넘겨준다
+        )
+
+        return redirect('detail',new_article.pk)
+    
+    return render(request, 'new.html')
+
+@login_required(login_url="/registration/login/")
+def detail(request, article_id):
+    details = Article.objects.get(id = article_id)
+
+    if request.method == 'POST':
+        content = request.POST['content']
+        Comment.objects.create(
+            post = details,
+            content = content
         )
         return redirect('detail', article_id)
     
