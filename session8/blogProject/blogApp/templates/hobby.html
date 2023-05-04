@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'category.css' %}" />
+{% endblock %}
+
+{% block title_ %}
+Hobby
+{% endblock %}
+
+{% block container %}
+      <h2>Categorization</h2>
+      <p>취미</p>
+      <ol>
+        {% for h in hobby_ %}
+        <li class="order">
+          <a class="link" href="{% url 'detail' h.id %}">{{ h.title }}</a>
+        </li>
+        {% endfor %}
+      </ol>
+      <p class="content">
+        <br /><br /><br /><br /><br /><a class="link" href="{% url 'list' %}"
+          >Back to <b>List</b> Page</a
+        >
+      </p>
+{% endblock %}
+  </body>
+</html>

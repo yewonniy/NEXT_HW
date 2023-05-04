@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'new.css' %}" />
+{% endblock %}
+
+{% block title_ %}
+writing
+{% endblock %}
+
+{% block container %}
+      <h2>글쓰기 페이지</h2>
+      <form action="/new" method="post">
+        {% csrf_token %}
+        <div class="container_form">
+          <div>
+            <div>article title</div>
+            <input type="text" name="title" />
+          </div>
+          <select id="category" name="category">
+            <option value="">--Please choose an option--</option>
+            <option value="hobby">취미</option>
+            <option value="daily">잡담</option>
+            <option value="programming">프로그래밍</option>
+          </select>
+          <div>
+            <div>content</div>
+            <textarea name="content" cols="40" rows="20"></textarea>
+          </div>
+          <button type="submit">작성 완료</button>
+        </div>
+      </form>
+{% endblock %}
+  </body>
+</html>

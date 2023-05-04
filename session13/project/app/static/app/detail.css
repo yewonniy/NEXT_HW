@@ -1,0 +1,50 @@
+.post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post_title {
+  position: absolute;
+  top: 150px;
+  left: 740px;
+}
+
+.post_content {
+  position: absolute;
+  top: 280px;
+  left: 740px;
+}
+
+.post_author {
+  position: absolute;
+  top: 500px;
+  left: 720px;
+}
+
+.post_comment {
+  position: absolute;
+  top: 600px;
+  left: 680px;
+}
+
+.to_home {
+  position: relative;
+  left: 180px;
+  bottom: 35px;
+  color: rgb(115, 178, 237);
+}
+
+.to_update {
+  position: relative;
+  left: 180px;
+  bottom: 35px;
+  color: rgb(115, 178, 237);
+}
+
+.to_delete {
+  position: relative;
+  left: 180px;
+  bottom: 35px;
+  color: rgb(115, 178, 237);
+}

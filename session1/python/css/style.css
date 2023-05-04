@@ -1,0 +1,65 @@
+.outer_box {
+  height: 918px;
+  width: 375px;
+  left: -1779px;
+  top: 239px;
+  border-radius: 0px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  background-color: #f6f6f6;
+}
+
+.main_box {
+  width: 375px;
+  height: 812px;
+  overflow-y: scroll;
+  background: #f7f7f7;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  height: 812px;
+  width: 375px;
+  left: 0px;
+  top: 24px;
+  border-radius: 0px;
+  background-color: beige;
+}
+
+.woori {
+  position: relative;
+  top: 60px;
+  left: 11px;
+  width: 10px;
+  height: 10px;
+  border-radius: 70%;
+  overflow: hidden;
+}
+
+.asset {
+  background-color: blue;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 15px;
+  gap: 233px;
+
+  position: absolute;
+  width: 314px;
+  height: 32.8px;
+  left: 6px;
+  top: 14px;
+}
+
+.spend {
+  position: absolute;
+  width: 320px;
+  height: 109px;
+  left: 31px;
+  top: 681px;
+
+  background: #ffffff;
+  border-radius: 10px;
+}

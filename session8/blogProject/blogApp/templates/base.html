@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load account socialaccount %} {% providers_media_js %} {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title_ %} {% endblock title_ %}</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}" />
+    {% block css %} {% endblock css %}
+  </head>
+  <body>
+    <nav id="navbar">
+      <div class="navbar__logo">
+        <a href="#">NEXT-LIKELION</a>
+      </div>
+      <ul class="navbar__menu">
+        <span class="navbar__menu__item">
+          <a href="{% url 'new' %}">New</a>
+        </span>
+        <span class="navbar__menu__item">
+          <a href="{% url 'home' %}">Home</a>
+        </span>
+        {% if user.is_authenticated %}
+        <span class="navbar__menu__item">안녕, {{user.username}}</span>
+        <span class="navbar__menu__item">
+          <a href="{% url 'logout'%}">로그아웃</a>
+        </span>
+        {% else %}
+        <span class="navbar__menu__item">
+          <a href="{% url 'login'%}">로그인</a>
+        </span>
+        <form method="POST" action="{% provider_login_url 'kakao' %}">
+          {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %}
+          <input
+            type="hidden"
+            name="{{ redirect_field_name }}"
+            value="{{ redirect_field_value }}"
+          />
+          {% endif %}
+          <button class="primaryAction kakaoBtnCss" type="submit">
+            Continue with kakao
+          </button>
+        </form>
+        <form method="POST" action="{% provider_login_url 'google' %}">
+          {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %}
+          <input
+            type="hidden"
+            name="{{ redirect_field_name }}"
+            value="{{ redirect_field_value }}"
+          />
+          {% endif %}
+        </form>
+        <!-- <li class="navbar__menu__item"> 
+          <a href="{% provider_login_url 'kakao' %}">카카오 로그인</a>
+        </li>
+        <li class="navbar__menu__item">
+          <a href="{% provider_login_url 'google' %}"> 구글 로그인 </a>
+        </li>-->
+        <span class="navbar__menu__item">
+          <a href="{% url 'signup'%}">회원가입</a>
+        </span>
+        {% endif %}
+      </ul>
+    </nav>
+    <div class="title">{% block title %} {% endblock title %}</div>
+    <div class="container">{% block content %} {% endblock content %}</div>
+    <div class="container">{% block container %} {% endblock container %}</div>
+    <footer>
+      <p class="foot">
+        Copyright 2023 sonyewon. All rights reserved.<br />
+        For more information, ae6652@naver.com
+      </p>
+    </footer>
+  </body>
+</html>

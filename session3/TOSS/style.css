@@ -1,0 +1,218 @@
+.outer_box {
+  height: 918px;
+  width: 375px;
+  border-radius: 0px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  background-color: #f6f6f6;
+}
+
+.logo {
+  position: relative;
+  left: 20px;
+  top: 70px;
+}
+.fin {
+  width: 109px;
+  height: 45px;
+}
+
+.tossbank {
+  background-color: #ffffff;
+  position: absolute;
+  width: 320px;
+  height: 60px;
+  left: 28px;
+  top: 129px;
+  border-radius: 15px;
+  line-height: 60px;
+}
+
+.ts {
+  position: relative;
+  left: 30px;
+}
+
+.main_box {
+  width: 375px;
+  height: 812px;
+  overflow-y: scroll;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  height: 812px;
+  width: 375px;
+  left: 0px;
+  top: 24px;
+  border-radius: 0px;
+  background-color: #f6f6f6;
+  border-radius: 15px;
+}
+
+.woori {
+  position: relative;
+  bottom: 134px;
+  left: -490px;
+  width: 35px;
+  height: 35px;
+  border-radius: 70%;
+  overflow: hidden;
+}
+
+.kakao1 {
+  position: relative;
+  bottom: 62px;
+  left: -757px;
+  width: 35px;
+  height: 35px;
+  border-radius: 70%;
+  overflow: hidden;
+}
+
+.kakao2 {
+  position: relative;
+  bottom: -7px;
+  right: 1025px;
+  width: 36px;
+  height: 36px;
+  border-radius: 70%;
+  overflow: hidden;
+}
+
+.tos {
+  position: relative;
+  top: 73px;
+  right: 1295px;
+  width: 36px;
+  height: 36px;
+  border-radius: 70%;
+  overflow: hidden;
+}
+
+.naver {
+  position: relative;
+  top: 140px;
+  right: 1563px;
+  width: 35px;
+  height: 35px;
+  border-radius: 70%;
+  overflow: hidden;
+}
+
+.asset {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 15px;
+  gap: 233px;
+  position: absolute;
+  width: 290px;
+  height: 453px;
+  left: 25px;
+  top: 209px;
+  border-radius: 15px;
+}
+
+.assetword {
+  position: relative;
+  bottom: 195px;
+  left: 20px;
+  font-size: 19px;
+}
+
+.assetword2 {
+  position: relative;
+  bottom: 195px;
+  right: 212px;
+  font-size: 19px;
+}
+
+.spend {
+  position: absolute;
+  width: 320px;
+  height: 109px;
+  left: 25px;
+  top: 681px;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.bank_name {
+  display: flex;
+  align-items: center;
+}
+
+.rest {
+  display: flex;
+  align-items: center;
+}
+
+.bank_name1 {
+  position: absolute;
+  width: 294px;
+  height: 55px;
+  left: 80px;
+  top: 70px;
+  border-radius: 10px;
+}
+
+.bank_name2 {
+  position: absolute;
+  width: 294px;
+  height: 55px;
+  left: 80px;
+  top: 144px;
+  border-radius: 10px;
+}
+
+.bank_name3 {
+  position: absolute;
+  width: 294px;
+  height: 55px;
+  left: 80px;
+  top: 210px;
+
+  border-radius: 10px;
+}
+
+.bank_name4 {
+  position: absolute;
+  width: 294px;
+  height: 55px;
+  left: 80px;
+  top: 276px;
+
+  border-radius: 10px;
+}
+
+.bank_name5 {
+  position: absolute;
+  width: 294px;
+  height: 55px;
+  left: 80px;
+  top: 342px;
+
+  border-radius: 10px;
+}
+
+.new {
+  background-color: rgba(139, 209, 255, 0.404);
+  position: relative;
+  left: 160px;
+  top: -5px;
+  width: 130px;
+  height: 30px;
+  text-align: center;
+  border-radius: 10px;
+  color: rgba(70, 70, 255, 0.853);
+}
+.spd {
+  position: relative;
+  left: 25px;
+  top: 20px;
+  font-size: 19px;
+}
