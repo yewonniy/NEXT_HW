@@ -1,0 +1,79 @@
+{% extends 'base.html' %} {% block content %}
+<div>
+  <div>
+    <div class="post_title">{{ post.title }}</div>
+    <div class="post_content">{{ post.content }}</div>
+  </div>
+  <a href="{% url 'home' %}">홈으로</a>
+
+  {% if user.is_authenticated and post.author.pk == user.pk %}
+  <a href="{% url 'edit' post.pk %}">수정하기</a>
+  <a href="{% url 'delete' post.pk %}">삭제하기</a>
+  <span class="like-count">좋아요 수 : {{ post.likes.count }}</span>
+  {% endif %} 
+  <ul class="ol">
+    {% for comment in post.comments.all %}
+    <li class="comments_">{{ comment.content }}</li>
+    {% if user.is_authenticated and comment.author.pk == user.pk %}
+    <a href="{% url 'delete_comment' post.pk comment.pk %}">댓글삭제</a>
+    {% endif %} {% endfor %} 
+  </ul>
+  {% if user.is_authenticated %}
+  <input class="comment-content" type="text" name="content" placeholder="댓글을 입력하세요" />
+  <button class="comment-button">댓글 쓰기</button>
+
+  <button class="like-button">좋아요</button>
+  {% endif %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const likeButton = document.querySelector(".like-button");
+  const likeCount = document.querySelector(".like-count");
+
+  const handleLike = () => {
+    fetch("/like", {
+      method: "POST",
+      body: JSON.stringify({
+        post_pk: "{{ post.pk }}",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response)=> response.json())
+      .then((data) => {
+        likeCount.innerHTML = `좋아요 ${data.like_count}개`;
+      });
+  };
+  likeButton.addEventListener("click", handleLike);
+</script>
+
+<script>
+  
+  const commentButton = document.querySelector(".comment-button");
+
+  const commentWrite = () => {
+    const commentContent = document.querySelector(".comment-content").value;
+    const userData = {
+      post_pk: "{{ post.pk }}",
+      content: commentContent
+    }
+
+    axios({
+      url: "/comment",
+      method: 'post',
+      data: userData
+    })
+    .then((response) => {
+      console.log(response.data);
+      const parent = document.querySelector(".ol");
+      const child = document.createElement('li');
+      child.append(`${response.data}`); //parent <li>댓글이당</li>
+      parent.appendChild(child);
+      document.querySelector(".comment-content").value = '';
+    });
+  }
+
+  commentButton.addEventListener("click", commentWrite);
+</script>
+{% endblock content %}
